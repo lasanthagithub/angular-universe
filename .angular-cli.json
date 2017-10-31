@@ -21,7 +21,8 @@
       "prefix": "app",
       "styles": [
         "styles.css",
-        "../../../node_modules/font-awesome/css/font-awesome.css"
+        "../../../node_modules/font-awesome/css/font-awesome.css",
+        "../../../node_modules/bootstrap/dist/css/bootstrap.min.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
@@ -29,6 +30,12 @@
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
       }
+    },
+    {
+      "name": "app-universe",
+      "root": "libs\\app-universe\\src",
+      "test": "../../../test.js",
+      "appRoot": ""
     },
     {
       "name": "workspace",

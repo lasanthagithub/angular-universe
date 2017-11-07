@@ -1,5 +1,5 @@
 .navbar {
-    padding: 30px 20px;
+    /* padding: 30px 20px; */
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
 }
@@ -7,5 +7,37 @@
 .shrink-header {
     padding-top: 0px;
     padding-bottom: 0px;
-    opacity: 0.9;
+    /* opacity: 0.9; */
+}
+
+.navbar-brand {
+    float: unset
+}
+
+.container-fluid-shrink {
+ display: block;
+}
+
+.nav-bottom {
+    height: 40px;
+    width: 100%;
+    margin-top: 5px;
+    display: flex;
+    background-color: beige;
+    border-radius: 10px;
+}
+
+.nav-side {
+    margin-top: 25px;
+    margin-left: 25px;
+    width: max-content;
+    border-left-style: ridge;
+    padding-left: 5px;
+    border-color: beige;
+}
+
+
+.nav-pills, .navbar-header {
+    width: auto;
+    margin: auto;
 }

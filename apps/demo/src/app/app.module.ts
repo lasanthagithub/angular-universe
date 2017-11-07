@@ -6,13 +6,18 @@ import { WorkspaceModule } from 'libs/workspace';
 import { AppUniverseModule } from 'libs/app-universe';
 
 import { HttpClientModule } from '@angular/common/http';
-
+import { MatCardModule } from '@angular/material';
+import {FlexLayoutModule} from "@angular/flex-layout";
+const config = require('./app-config/config.json');
 @NgModule({
   imports: [BrowserModule, 
                 NxModule.forRoot(), 
-                HttpClientModule, 
+                HttpClientModule,
+                MatCardModule,
                 WorkspaceModule, 
-                AppUniverseModule],
+                FlexLayoutModule,
+                AppUniverseModule.fromConfig(config)
+            ],
   declarations: [AppComponent],
   bootstrap: [AppComponent]
 })

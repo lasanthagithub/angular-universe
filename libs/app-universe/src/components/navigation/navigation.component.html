@@ -1,0 +1,6 @@
+<ul class="nav nav-pills">
+    <li *ngFor= "let item of options?.items" class="nav-item"
+        role="presentation" [ngClass]="{'active': item.active}">
+            <a class="nav-link" (click) = "setActive(item)"
+                [routerLink] = "item.target">{{item.text}}</a></li>
+</ul>

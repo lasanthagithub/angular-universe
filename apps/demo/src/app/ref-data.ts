@@ -104,7 +104,6 @@ export default class RefData {
   };
 
   static countries = [
-    
     { country: 'Ireland', continent: 'Europe', language: 'English' },
     { country: 'United States', continent: 'North America', language: 'English' },
     { country: 'Canada', continent: 'Europe', language: 'English' },
@@ -140,7 +139,7 @@ export default class RefData {
     { country: 'Sauid Arabia', continent: 'Asia', language: 'Arabic' },
     { country: 'China', continent: 'Asia', language: 'Chinese' },
     { country: 'Taiwan', continent: 'Asia', language: 'Chinese' },
-    { country: 'Philippines', continent: 'Asia', language: 'Filipino' },
+    { country: 'Philippines', continent: 'Asia', language: 'Filipino' }
   ];
 
   static addresses = [

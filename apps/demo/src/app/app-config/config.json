@@ -1,5 +1,25 @@
 {
-    "appTitle": "BlackRock Angular Meetup",
-    "appIcon": "assets/AAB.png",
-    "shrinkedAppIcon": "assets/AB.png"
+
+    "header": {
+        "appTitle": "BlackRock Angular Meetup",
+        "appIcon": "assets/AAB.png",
+        "shrinkedAppIcon": "assets/AB.png"
+    },
+    "navigation": {
+        "items": [
+            {
+                "text": "Demo",
+                "target": "/home",
+                "active": true
+            },
+            {
+                "text": "Drilldown",
+                "target": "/drilling"
+            },
+            {
+                "text": "Full",
+                "target": "/full"
+            }
+        ]
+    }
 }

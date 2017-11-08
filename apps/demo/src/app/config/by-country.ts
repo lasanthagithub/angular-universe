@@ -3,7 +3,7 @@ export let config = {
   title: 'Person by country',
   type: 'column',
   aggregation: {
-    by: 'continent',
+    by: 'country',
     reducer: 'Count',
     stackBy: 'gender'
   },
@@ -13,5 +13,9 @@ export let config = {
   sortBy: {
     by: 'VALUE',
     direction: 'DESC'
-  }
+  },
+top: {
+    value: 50,
+    by: 'VALUE'
+}
 };

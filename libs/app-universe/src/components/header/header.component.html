@@ -1,18 +1,15 @@
-<nav [ngClass]="['navbar', 'navbar-default', 'navbar-fixed-top', shrinkCssClass]" appTrackScroll (scrolled)="onScrolled($event)">
+<nav [ngClass]="['navbar', 'navbar-default', 'fixed-top', 'navbar-light', 'bg-faded', shrinkCssClass]" appTrackScroll (scrolled)="onScrolled($event)">
     <div class = "container-fluid" [ngClass]="{'container-fluid-shrink' : shrinked}">
-    <div class="navbar-header">
-    <img [height]="imageHeight" [src]="shrinked? options?.shrinkedAppIcon: options?.appIcon">
-      <a class="navbar-brand  mb-0" href="#">
-        {{options?.appTitle}}
-      </a> 
-    </div>
-    <div class="nav" [ngClass] = "{'nav-bottom': !shrinked, 'nav-side': shrinked}">
-        <ul class="nav nav-pills">
-            <li role="presentation" class="active"><a href="#">Home</a></li>
-            <li role="presentation"><a href="#">Profile</a></li>
-            <li role="presentation"><a href="#">Messages</a></li>
-        </ul>
-    </div>
+        <div class="navbar-header">
+        <img [height]="imageHeight" [src]="shrinked? options?.shrinkedAppIcon: options?.appIcon">
+        <a class="navbar-brand  mb-0" href="#">
+            {{options?.appTitle}}
+        </a> 
+        </div>
+       
+    
   </div>
- 
+   <div  class="nav" [ngClass] = "{'nav-bottom': !shrinked, 'nav-side': shrinked}">
+            <app-navigation [options] = "universeOptions.navigation"></app-navigation>
+        </div>
 </nav>

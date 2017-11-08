@@ -1,5 +1,4 @@
-
 export class HeaderConfig {
-    appTitle: string;
-    appIcon: string;
+  appTitle: string;
+  appIcon: string;
 }

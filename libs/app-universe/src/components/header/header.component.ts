@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HeaderConfig } from '../../model/configs';
+import { UniverseConfig } from '../../model/universe.config';
 
 @Component({
   selector: 'app-header',
@@ -8,16 +9,18 @@ import { HeaderConfig } from '../../model/configs';
 })
 export class HeaderComponent implements OnInit {
   shrinked: boolean;
-  imageHeight: String = "150";
-  constructor(public options: HeaderConfig) {
-
-  }
+  imageHeight: String = '150';
+  @Input() universeOptions: UniverseConfig;
+  options: HeaderConfig;
+  constructor() {}
   shrinkCssClass: String = '';
 
   onScrolled(yPos: number) {
     this.shrinkCssClass = yPos ? 'shrink-header' : '';
     this.shrinked = yPos > 0;
-    this.imageHeight = yPos? '100': '150';
+    this.imageHeight = yPos ? '100' : '150';
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.options = this.universeOptions.header;
+  }
 }

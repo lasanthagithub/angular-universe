@@ -15,6 +15,7 @@
 }
 
 .container-fluid-shrink {
+ margin: 0px;
  display: block;
 }
 
@@ -34,8 +35,10 @@
     border-left-style: ridge;
     padding-left: 5px;
     border-color: beige;
+    display: block;
+    position: absolute;
+    margin-left: 500px;
 }
-
 
 .nav-pills, .navbar-header {
     width: auto;

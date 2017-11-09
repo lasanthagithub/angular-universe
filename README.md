@@ -22,6 +22,11 @@ const config = require('./app-config/config.json');
     .......
   ], ......
 ```
+
+Then inside your app.component.html add the following line:
+
+<app-universe></app-universe> 
+
   The magic will show and you will have a pre-configured app with common functionality that is built for you. 
 
   Example of common functionality that we are working on:

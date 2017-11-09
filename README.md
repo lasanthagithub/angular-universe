@@ -1,44 +1,35 @@
-# WorkspaceDemo
+# Angular Universe
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.9 using [Nrwl Nx](https://nrwl.io/nx).
+Angular Universe is an Angular based libarary. The Universe library opens up creating Angular application with minimum efforts. It will be all based on configurations. 
 
-## Nrwl Extensions for Angular (Nx)
+## Getting Started:
 
-<a href="https://nrwl.io/nx"><img src="https://preview.ibb.co/mW6sdw/nx_logo.png"></a>
+Angular Universe is being pushed to npm and yarn very soon. You will need to run ng new YouAppName and then install the angular-universe libarary. 
 
-Nx is an open source toolkit for enterprise Angular applications.
+Create a config.json file inside app-config/config.json
 
-Nx is designed to help you create and build enterprise grade Angular applications. It provides an opinionated approach to application project structure and patterns.
+config.json example can be found in the demo app in this git repo
 
-## Quick Start & Documentation
 
-[Watch a 5-minute video on how to get started with Nx.](http://nrwl.io/nx)
+Modify your app.module.ts file as follows: 
 
-## Generate your first application
+import { AppUniverseModule } from 'angular-universe';
+const config = require('./app-config/config.json');
+@NgModule({
+  imports: [
+    .......,
+    AppUniverseModule.fromConfig(config),
+    .......
+  ], ......
 
-Run `ng generate app myapp` to generate an application. When using Nx, you can create multiple applications and libraries in the same CLI workspace. Read more [here](http://nrwl.io/nx).
+  The magic will show and you will have a pre-configured app with common functionality that is built for you. 
 
-## Development server
+  Example of common functionality that we are working on:
 
-Run `ng serve --app=myapp` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+  1- header 
+  2- navigation 
+  3- Modals 
+  4- Alerts 
 
-## Code scaffolding
+  Universe will be built with a responsive design that supports desktop and mobile. Universe is to be used in the future to create different app templates that will be ready for you to use with just few configurations. 
 
-Run `ng generate component component-name --app=myapp` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build --app=myapp` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

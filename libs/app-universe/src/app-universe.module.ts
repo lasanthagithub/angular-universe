@@ -12,8 +12,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 export function configLoaderFactory(): ConfigLoader {
   const config = new ConfigStaticLoader(AppUniverseModule.config);
-  // debugger;
-  // const config = new ConfigStaticLoader(require('./config/header.json'));
   return config;
 }
 export function configLoaderFactorySettings(_configService: ConfigService): UniverseConfig {

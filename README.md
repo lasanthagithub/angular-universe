@@ -4,13 +4,24 @@ Angular Universe is an Angular based libarary. The Universe library opens up cre
 
 ## Getting Started:
 
-Angular Universe is being pushed to npm and yarn very soon. You will need to run ng new YouAppName and then install the angular-universe libarary. 
+
+npm install angular-universe --save
 
 Create a config.json file inside app-config/config.json
 
 config.json example can be found in the demo app in this git repo
 
+we currently depend on boostrap so to get things work modify your .angular-cli
 
+```
+	"styles": [
+        "styles.css",
+        "../node_modules/font-awesome/css/font-awesome.css",
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+      ],
+``` 
+Note: the plan is to remove this dependency and use materials 
+ 
 Modify your app.module.ts file as follows: 
 ```
 import { AppUniverseModule } from 'angular-universe';

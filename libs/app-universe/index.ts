@@ -1,1 +1,1 @@
-export { AppUniverseModule } from './src/app-universe.module';
+export * from './src/app-universe.module';

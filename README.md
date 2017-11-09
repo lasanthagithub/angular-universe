@@ -12,7 +12,7 @@ config.json example can be found in the demo app in this git repo
 
 
 Modify your app.module.ts file as follows: 
-
+```
 import { AppUniverseModule } from 'angular-universe';
 const config = require('./app-config/config.json');
 @NgModule({
@@ -21,15 +21,15 @@ const config = require('./app-config/config.json');
     AppUniverseModule.fromConfig(config),
     .......
   ], ......
-
+```
   The magic will show and you will have a pre-configured app with common functionality that is built for you. 
 
   Example of common functionality that we are working on:
-
+```
   1- header 
   2- navigation 
   3- Modals 
   4- Alerts 
-
+```
   Universe will be built with a responsive design that supports desktop and mobile. Universe is to be used in the future to create different app templates that will be ready for you to use with just few configurations. 
 

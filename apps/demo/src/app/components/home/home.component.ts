@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { WorkspaceConfig } from 'libs/workspace/src/model/workspace-config';
-import { WidgetConfig } from 'libs/workspace/src/model/widget-config';
 import { DataProviderService } from '../../services/data-provider.service';
 import { HttpClient } from '@angular/common/http';
 
@@ -10,38 +8,11 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  config: WorkspaceConfig;
   constructor(private http: HttpClient,
                 public dataProvider: DataProviderService) {
   }
 
   ngOnInit() {
-    const config: WorkspaceConfig = new WorkspaceConfig();
-    config.addWidget(require('./../../config/by-continent').config);
-    config.addWidget(require('./../../config/by-country').config);
-    config.addWidget(require('./../../config/by-lastName').config);
-    config.addWidget(require('./../../config/by-language').config);
-    this.config = config;
-    this.dataProvider.createRowData(100000).subscribe(dt => {
-        this.http.get('https://jsonplaceholder.typicode.com/users').subscribe(data => {
-        config.data.next({
-            id: 'BY_COUNTRY',
-            data: dt
-        });
-        config.data.next({
-            id: 'BY_CONTINENT',
-            data: dt
-        });
-        config.data.next({
-            id: 'BY_LAST_NAME',
-            data: dt
-        });
-        config.data.next({
-            id: 'BY_LANGUAGE',
-            data: dt
-        });
-        });
-    });
     
   }
 }

@@ -14,6 +14,7 @@ export let config = {
     direction: 'DESC'
   },
   info: {
-      title: "Test"
+      display: "Test",
+      advanced: true
   }
 };

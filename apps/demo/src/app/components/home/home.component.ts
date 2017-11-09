@@ -22,24 +22,26 @@ export class HomeComponent implements OnInit {
     config.addWidget(require('./../../config/by-lastName').config);
     config.addWidget(require('./../../config/by-language').config);
     this.config = config;
-    const dt = this.dataProvider.createRowData(10000);
-    this.http.get('https://jsonplaceholder.typicode.com/users').subscribe(data => {
-      config.data.next({
-        id: 'BY_COUNTRY',
-        data: dt
-      });
-    config.data.next({
-        id: 'BY_CONTINENT',
-        data: dt
-      });
-    config.data.next({
-        id: 'BY_LAST_NAME',
-        data: dt
-      });
-    config.data.next({
-        id: 'BY_LANGUAGE',
-        data: dt
-      });
+    this.dataProvider.createRowData(100000).subscribe(dt => {
+        this.http.get('https://jsonplaceholder.typicode.com/users').subscribe(data => {
+        config.data.next({
+            id: 'BY_COUNTRY',
+            data: dt
+        });
+        config.data.next({
+            id: 'BY_CONTINENT',
+            data: dt
+        });
+        config.data.next({
+            id: 'BY_LAST_NAME',
+            data: dt
+        });
+        config.data.next({
+            id: 'BY_LANGUAGE',
+            data: dt
+        });
+        });
     });
+    
   }
 }

@@ -1,25 +1,46 @@
 import { Injectable } from '@angular/core';
 import { Random } from './../random';
 import RefData from './../ref-data';
+import * as workerPath from "file-loader?name=[name].js!./worker";
+import { Subject } from 'rxjs/Rx';
+
+const worker = new Worker(workerPath);
 
 @Injectable()
 export class DataProviderService {
   random: Random;
   constructor() {
-      this.random = new Random(120);
+      
+      
+      // this.random = new Random(120);
+
+      
+        
   }
 
   public createRowData(numberOfRows: number) {
-    const rowData: any[] = [];
+    const data = new Subject();
+    worker.postMessage({numberOfRows: numberOfRows, result: null});
+    worker.addEventListener('message', message => {  
+        data.next(message.data);
+    });
+    return data;
+    // const rowData: any[] = [];
 
-    for (let i = 0; i < numberOfRows; i++) {
-      this.random = new Random(this.random.nextInt32([i, 1000]));
+    // for (let i = 0; i < numberOfRows; i++) {
+      
+    //   rowData.push(this.getRow(i));
+    // }
+    // console.log('finished collecting data');
+    // return rowData;
+  }
+ private getRow(i) {
+    this.random = new Random(this.random.nextInt32([i, 1000]));
       const firstName = this.getRandom(RefData.firstNames);
       const lastName = this.getRandom(RefData.lastNames);
       const countryData = this.getRandom(RefData.countries);
       // RefData.countries[i % RefData.countries.length];
-
-      rowData.push({
+    const row = {
         firstName: firstName,
         lastName: lastName,
         name: lastName + ', ' + firstName,
@@ -40,12 +61,9 @@ export class DataProviderService {
         language: countryData.language,
         mobile: this.createRandomPhoneNumber(),
         landline: this.createRandomPhoneNumber()
-      });
-    }
-    console.log('finished collecting data');
-    return rowData;
-  }
-
+      };
+    return row;
+ }
   private createRandomPhoneNumber() {
     let result = '+';
     for (let i = 0; i < 12; i++) {

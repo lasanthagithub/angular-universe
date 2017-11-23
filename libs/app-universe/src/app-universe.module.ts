@@ -1,14 +1,15 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';;
 import { HeaderComponent } from './components/header/header.component';
 import { UniverseComponent } from './components/universe/universe.component';
 import { TrackScrollDirective } from './directives/track-scroll.directive';
-import { BsRootModule } from 'ngx-bootstrap';
 import { ConfigLoader, ConfigStaticLoader } from '@ngx-config/core';
 import { ConfigService, ConfigModule } from '@ngx-config/core';
 import { UniverseConfig } from './model/universe.config';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { RouterModule, Routes } from '@angular/router';
+import { MatToolbarModule,   MatCardModule, MatSidenavModule } from '@angular/material';
 
 export function configLoaderFactory(): ConfigLoader {
   const config = new ConfigStaticLoader(AppUniverseModule.config);
@@ -21,6 +22,10 @@ export function configLoaderFactorySettings(_configService: ConfigService): Univ
 @NgModule({
   imports: [
     CommonModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatCardModule,
+    MatSidenavModule,
     RouterModule.forChild([]),
     ConfigModule.forRoot({
       provide: ConfigLoader,

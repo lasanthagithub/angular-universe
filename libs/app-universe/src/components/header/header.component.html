@@ -1,4 +1,4 @@
-<nav [ngClass]="['navbar', 'navbar-default', 'fixed-top', 'navbar-light', 'bg-faded', shrinkCssClass]" appTrackScroll (scrolled)="onScrolled($event)">
+<!-- <nav [ngClass]="['navbar', 'navbar-default', 'fixed-top', 'navbar-light', 'bg-faded', shrinkCssClass]" appTrackScroll (scrolled)="onScrolled($event)">
     <div class = "container-fluid" [ngClass]="{'container-fluid-shrink' : shrinked}">
         <div class="navbar-header">
         <img [height]="imageHeight" [src]="shrinked? options?.shrinkedAppIcon: options?.appIcon">
@@ -12,4 +12,45 @@
    <div  class="nav" [ngClass] = "{'nav-bottom': !shrinked, 'nav-side': shrinked}">
             <app-navigation [options] = "universeOptions.navigation"></app-navigation>
         </div>
-</nav>
+</nav> -->
+<!-- <mat-toolbar color="primary">
+    <mat-toolbar-row class="navbar-header">
+            <img [height]="imageHeight" [src]="shrinked? options?.shrinkedAppIcon: options?.appIcon">
+      <span>Custom Toolbar</span>
+    </mat-toolbar-row>
+  
+    <mat-toolbar-row>
+      <span>Second Line</span>
+      <span class="example-spacer"></span>
+      
+    </mat-toolbar-row>
+  
+    <mat-toolbar-row>
+      <span>Third Line</span>
+      <span class="example-spacer"></span>
+    </mat-toolbar-row>
+  </mat-toolbar> -->
+
+  <div style="position:absolute;top:0;left:0;right:0;bottom:0;" >
+        <mat-sidenav-container #sidenav style="height:100%;width:100%;" > 
+          <!-- <mat-sidenav mode="over" #sidenav style="min-width:220px;">
+            <p>Sidenav Content</p>
+          </mat-sidenav> -->
+          <mat-toolbar color="primary" [ngClass] = "{'full': !shrinked, 'less': shrinked}"  [@shrinkOut]="toggleState">
+            <!-- <span>
+                <button style="background-color:transparent;border-style:none;cursor:pointer;" (click)="sidenav.open()">
+                    <i class="material-icons toolbar-link-icon" style="color:white;">menu</i>
+                </button>
+            </span> -->
+            <mat-toolbar-row class="navbar-header">
+                <img [height]="imageHeight" [src]="shrinked? options?.shrinkedAppIcon: options?.appIcon">
+            <span >Fixed Header Example</span>
+            </mat-toolbar-row>
+        </mat-toolbar>
+          <div class="inner-sidenav-content"  (scroll)="onScrolled($event)">
+            <div style="padding-top:2em;padding-bottom:2em;">
+              <router-outlet></router-outlet>
+            </div>
+          </div>
+        </mat-sidenav-container>
+      </div>

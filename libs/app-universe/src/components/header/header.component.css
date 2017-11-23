@@ -43,4 +43,22 @@
 .nav-pills, .navbar-header {
     width: auto;
     margin: auto;
+    padding-top: 30px;
+}
+
+.inner-sidenav-content {
+    overflow: auto;
+    position: absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    top:164px;
+  }
+
+mat-toolbar.full {
+    min-height: 150px;
+}
+
+mat-toolbar.less {
+    /* min-height: 65px; */
 }

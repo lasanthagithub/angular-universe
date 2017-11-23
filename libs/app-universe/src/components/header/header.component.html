@@ -38,17 +38,17 @@
             <p>Sidenav Content</p>
           </mat-sidenav> -->
          
-          <mat-toolbar color="primary" [@shrinkOut]="toggleState">
+          <mat-toolbar color="primary" [@shrinkOut]="toggleState" style="background-color: cadetblue;" [ngClass] = "{'less-block': shrinked}">
             <!-- <span>
                 <button style="background-color:transparent;border-style:none;cursor:pointer;" (click)="sidenav.open()">
                     <i class="material-icons toolbar-link-icon" style="color:white;">menu</i>
                 </button>
             </span> -->
-            <mat-toolbar-row [@centerHeader]="toggleTitle" [ngClass]="{'less-inline': shrinked}">
+            <mat-toolbar-row [@centerHeader]="toggleTitle" [ngClass]="{'nav-inline': shrinked}">
                 <img [height]="imageHeight" [src]="shrinked? options?.shrinkedAppIcon: options?.appIcon">
             <span>{{options?.appTitle}}</span>
             </mat-toolbar-row>
-            <mat-toolbar-row [ngClass]="{'less-inline': shrinked}">
+            <mat-toolbar-row [ngClass]="{'nav-inline': shrinked, 'nav-full': !shrinked}" >
                     <app-navigation [options] = "universeOptions.navigation"></app-navigation>
             </mat-toolbar-row>
         </mat-toolbar>

@@ -9,9 +9,9 @@ import { UniverseConfig } from '../../model/universe.config';
   animations: [
     trigger('shrinkOut', [
       state('less', style({'min-height': '65px', 'display': 'block'})),
-      state('full', style({'min-height': '150px'})),
+      state('full', style({'min-height': '150px', 'display': '*'})),
       transition('full => less', [
-        style({'min-height': '150px'}),
+        style({'min-height': '150px', 'display': '*'}),
         animate('500ms ease-in-out')
       ]),
       transition('less => full', [

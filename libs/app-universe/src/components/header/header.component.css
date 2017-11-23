@@ -57,9 +57,16 @@
   .inner-sidenav-content-full {
     top:70px;
   }
-  .less-inline {
+  .nav-inline {
       display: inline;
+      background-color: cadetblue;
   }
+  .nav-full {
+    background-color: currentColor;
+    height: 45px;
+}
   .less-block {
-    display: block;
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
 }

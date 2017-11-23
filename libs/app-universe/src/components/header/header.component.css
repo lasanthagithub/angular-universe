@@ -54,11 +54,6 @@
     right:0;
     top:164px;
   }
-
-mat-toolbar.full {
-    min-height: 150px;
-}
-
-mat-toolbar.less {
-    /* min-height: 65px; */
-}
+  .inner-sidenav-content-full {
+    top:70px;
+  }

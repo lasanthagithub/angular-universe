@@ -36,18 +36,18 @@
           <!-- <mat-sidenav mode="over" #sidenav style="min-width:220px;">
             <p>Sidenav Content</p>
           </mat-sidenav> -->
-          <mat-toolbar color="primary" [ngClass] = "{'full': !shrinked, 'less': shrinked}"  [@shrinkOut]="toggleState">
+          <mat-toolbar color="primary" [@shrinkOut]="toggleState">
             <!-- <span>
                 <button style="background-color:transparent;border-style:none;cursor:pointer;" (click)="sidenav.open()">
                     <i class="material-icons toolbar-link-icon" style="color:white;">menu</i>
                 </button>
             </span> -->
-            <mat-toolbar-row class="navbar-header">
+            <mat-toolbar-row [@centerHeader]="toggleTitle">
                 <img [height]="imageHeight" [src]="shrinked? options?.shrinkedAppIcon: options?.appIcon">
-            <span >Fixed Header Example</span>
+            <span>{{options?.appTitle}}</span>
             </mat-toolbar-row>
         </mat-toolbar>
-          <div class="inner-sidenav-content"  (scroll)="onScrolled($event)">
+          <div class="inner-sidenav-content" [ngClass] ="{'inner-sidenav-content-full': shrinked}" (scroll)="onScrolled($event)">
             <div style="padding-top:2em;padding-bottom:2em;">
               <router-outlet></router-outlet>
             </div>

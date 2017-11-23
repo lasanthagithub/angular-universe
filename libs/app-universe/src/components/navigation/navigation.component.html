@@ -1,9 +1,9 @@
-<!-- <ul class="nav nav-pills">
+<ul class="nav nav-pills">
     <li *ngFor= "let item of options?.items" class="nav-item"
-        role="presentation" [ngClass]="{'active': item.active}">
-            <a class="nav-link" (click) = "setActive(item)"
+         >
+            <a class="nav-link" (click) = "setActive(item)" [ngClass]="{'active': item.active}" mat-menu-item
                 [routerLink] = "item.target">{{item.text}}</a></li>
-</ul> -->
-<button mat-menu-item *ngFor= "let item of options?.items" 
+</ul>
+<!-- <a mat-menu-item class="nav-link" *ngFor= "let item of options?.items" 
     [routerLink] = "item.target"  
-    (click) = "setActive(item)"> {{item.text}} </button>
+    (click) = "setActive(item)"> {{item.text}} </a> -->

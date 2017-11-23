@@ -11,17 +11,16 @@ Create a config.json file inside app-config/config.json
 
 config.json example can be found in the demo app in this git repo
 
-we currently depend on boostrap so to get things work modify your .angular-cli
+You will get a project that is using materials so add your theme to .angular-cli
 
 ```
 	"styles": [
         "styles.css",
         "../node_modules/font-awesome/css/font-awesome.css",
-        "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+        "../../../node_modules/@angular/material/prebuilt-themes/indigo-pink.css" // Choose your material theme
       ],
 ``` 
-Note: the plan is to remove this dependency and use materials 
- 
+
 Modify your app.module.ts file as follows: 
 ```
 import { AppUniverseModule } from 'angular-universe';

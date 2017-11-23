@@ -9,7 +9,7 @@ import { ConfigService, ConfigModule } from '@ngx-config/core';
 import { UniverseConfig } from './model/universe.config';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { RouterModule, Routes } from '@angular/router';
-import { MatToolbarModule,   MatCardModule, MatSidenavModule } from '@angular/material';
+import { MatToolbarModule,   MatCardModule, MatSidenavModule, MatMenuModule, MatButtonModule  } from '@angular/material';
 
 export function configLoaderFactory(): ConfigLoader {
   const config = new ConfigStaticLoader(AppUniverseModule.config);
@@ -26,6 +26,8 @@ export function configLoaderFactorySettings(_configService: ConfigService): Univ
     MatToolbarModule,
     MatCardModule,
     MatSidenavModule,
+    MatMenuModule,
+    MatButtonModule,
     RouterModule.forChild([]),
     ConfigModule.forRoot({
       provide: ConfigLoader,

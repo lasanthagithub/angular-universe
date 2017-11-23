@@ -8,14 +8,14 @@ import { UniverseConfig } from '../../model/universe.config';
   styleUrls: ['./header.component.css'],
   animations: [
     trigger('shrinkOut', [
-      state('less', style({'min-height': '65px'})),
+      state('less', style({'min-height': '65px', 'display': 'block'})),
       state('full', style({'min-height': '150px'})),
       transition('full => less', [
         style({'min-height': '150px'}),
         animate('500ms ease-in-out')
       ]),
       transition('less => full', [
-        style({'min-height': '65px'}),
+        style({'min-height': '65px', 'display': 'block'}),
         animate('500ms ease-in-out')
       ])
     ]),

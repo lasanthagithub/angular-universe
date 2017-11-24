@@ -1,12 +1,26 @@
-<ul class="nav nav-pills">
+<!-- <ul class="nav nav-pills">
     <li *ngFor= "let item of options?.items" class="nav-item"
          >
             <a class="nav-link" (click) = "setActive(item)" [ngClass]="{'active': item.active}" mat-menu-item
                 [routerLink] = "item.target">{{item.text}}</a></li>
-</ul>
+</ul> -->
 
 
 
 <!-- <a mat-menu-item class="nav-link" *ngFor= "let item of options?.items" 
     [routerLink] = "item.target"  
     (click) = "setActive(item)"> {{item.text}} </a> -->
+
+<ul class="mat-nav-bar-list nav-pills" mat-nav-bar-list>
+    <li *ngFor= "let item of options?.items" class="nav-item mat-nav-item" mat-nav-item>
+        <button [routerLink] = "item.target" 
+            [ngClass]="{'active': item.active}"
+            mat-button  mat-ink-ripple mat-accent
+            class="_mat-nav-button md-accent mat-button mat-ink-ripple mat-active mat-primary"
+            (click) = "setActive(item)"
+            >
+            {{item.text}}
+        </button>
+        
+    </li>
+</ul>

@@ -1,3 +1,4 @@
 .nav-pills {
     display:  inline-flex;
+    list-style-type: none;
 }

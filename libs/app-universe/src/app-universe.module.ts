@@ -11,14 +11,22 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { RouterModule, Routes } from '@angular/router';
 import { MatToolbarModule,   MatCardModule, MatSidenavModule, MatMenuModule, MatButtonModule  } from '@angular/material';
 
-export function configLoaderFactory(): ConfigLoader {
-  const config = new ConfigStaticLoader(AppUniverseModule.config);
+export interface IConfigValue {
+    json: any
+}
+
+export class ConfigValue implements IConfigValue {
+    json: any;
+}
+
+export function configLoaderFactory(configValue: ConfigValue): ConfigLoader {
+  const config = new ConfigStaticLoader(configValue.json);
   return config;
 }
 export function configLoaderFactorySettings(_configService: ConfigService): UniverseConfig {
-  const anya = _configService.getSettings();
   return <UniverseConfig>_configService.getSettings();
 }
+
 @NgModule({
   imports: [
     CommonModule,
@@ -31,7 +39,8 @@ export function configLoaderFactorySettings(_configService: ConfigService): Univ
     RouterModule.forChild([]),
     ConfigModule.forRoot({
       provide: ConfigLoader,
-      useFactory: configLoaderFactory
+      useFactory: configLoaderFactory,
+      deps: [ConfigValue]
     })
   ],
   declarations: [HeaderComponent, UniverseComponent, TrackScrollDirective, NavigationComponent],
@@ -46,11 +55,16 @@ export function configLoaderFactorySettings(_configService: ConfigService): Univ
   bootstrap: []
 })
 export class AppUniverseModule {
-  static config: any = null;
-  static fromConfig(config: any): ModuleWithProviders {
-    AppUniverseModule.config = config;
+  
+  static fromConfig(config: IConfigValue): ModuleWithProviders {
     return {
-      ngModule: AppUniverseModule
+      ngModule: AppUniverseModule,
+      providers: [
+          {
+              provide: ConfigValue,
+              useValue: config
+          }
+      ]
     };
   }
 }

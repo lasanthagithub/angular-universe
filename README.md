@@ -7,6 +7,11 @@ Angular Universe is an Angular based libarary. The Universe library opens up cre
 
 npm install angular-universe --save
 
+As we use Materials for our design you will also need to install materials and CDK 
+
+npm install @angular/cdk --save
+npm install @angular/material --save
+
 Create a config.json file inside app-config/config.json
 
 config.json example can be found in the demo app in this git repo
@@ -17,14 +22,17 @@ You will get a project that is using materials so add your theme to .angular-cli
 	"styles": [
         "styles.css",
         "../node_modules/font-awesome/css/font-awesome.css",
-        "../../../node_modules/@angular/material/prebuilt-themes/indigo-pink.css" // Choose your material theme
+        "./../node_modules/@angular/material/prebuilt-themes/indigo-pink.css" // Choose your material theme
       ],
 ``` 
 
 Modify your app.module.ts file as follows: 
 ```
-import { AppUniverseModule } from 'angular-universe';
-const config = require('./app-config/config.json');
+import {  AppUniverseModule, IConfigValue  } from 'angular-universe';
+const jsonValue = require('./config.json');
+const config: IConfigValue = {
+    json: jsonValue
+};
 @NgModule({
   imports: [
     .......,
@@ -32,6 +40,20 @@ const config = require('./app-config/config.json');
     .......
   ], ......
 ```
+
+Note to be able to use `require` keyword above to load your json, you will need to edit tsconfig.app.json as follows:
+
+```
+    "compilerOptions": {
+       .....,
+        "types": [
+            "node"
+        ]
+
+    }
+```
+
+This only apply if you are using cli project. For reference: https://stackoverflow.com/questions/31173738/typescript-getting-error-ts2304-cannot-find-name-require 
 
 Then inside your app.component.html add the following line:
 ```

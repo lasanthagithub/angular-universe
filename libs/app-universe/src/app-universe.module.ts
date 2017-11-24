@@ -46,7 +46,7 @@ export function configLoaderFactorySettings(_configService: ConfigService): Univ
   bootstrap: []
 })
 export class AppUniverseModule {
-  static config: any;
+  static config: any = null;
   static fromConfig(config: any): ModuleWithProviders {
     AppUniverseModule.config = config;
     return {

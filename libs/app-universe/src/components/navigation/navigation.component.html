@@ -4,6 +4,9 @@
             <a class="nav-link" (click) = "setActive(item)" [ngClass]="{'active': item.active}" mat-menu-item
                 [routerLink] = "item.target">{{item.text}}</a></li>
 </ul>
+
+
+
 <!-- <a mat-menu-item class="nav-link" *ngFor= "let item of options?.items" 
     [routerLink] = "item.target"  
     (click) = "setActive(item)"> {{item.text}} </a> -->

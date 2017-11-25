@@ -18,7 +18,8 @@ rm -rf "C:/npm/universe/"
 mkdir  C:/npm/universe/
 cp angular-universe-0.0.4.tgz C:/npm/universe/angular-universe-0.0.4.tgz
 
-cd  C:/Developer/Projects/GIT/mydemo/
+cd  D:/Developer/Projects/GIT/mydemo/
+
 npm uninstall angular-universe --save
 npm install C:/npm/universe/angular-universe-0.0.4.tgz --save
 npm run start

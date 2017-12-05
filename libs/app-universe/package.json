@@ -15,12 +15,8 @@
   },
   "private": false,
   "dependencies": {
-    "@ngx-config/core": "~4.0.1",
     "angular-font-awesome": "~2.3.7",
-    "bootstrap": "~4.0.0-alpha.6",
-    "font-awesome": "~4.7.0",
-    "ngx-bootstrap": "~1.9.3",
-    "ngx-config": "~1.1.2"
+    "font-awesome": "~4.7.0"
   },
   "peerDependencies": {
     "@angular/animations": "5.0.0",

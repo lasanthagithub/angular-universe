@@ -1,32 +1,38 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule, ModuleWithProviders, APP_INITIALIZER, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';;
 import { HeaderComponent } from './components/header/header.component';
 import { UniverseComponent } from './components/universe/universe.component';
 import { TrackScrollDirective } from './directives/track-scroll.directive';
-import { ConfigLoader, ConfigStaticLoader } from '@ngx-config/core';
-import { ConfigService, ConfigModule } from '@ngx-config/core';
 import { UniverseConfig } from './model/universe.config';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MatToolbarModule,   MatCardModule, MatSidenavModule, MatMenuModule, MatButtonModule  } from '@angular/material';
+import { setTimeout } from 'timers';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { UniverseLoaderEffects } from './state/universe.loader/universe.loader.effects';
+import { UNIVERSE_REDUCERS} from './state/universe.reducer';
+import { Store } from '@ngrx/store';
+import { UniverseState } from './state/universe.state';
+import { InitiateUniverseLoader, LoadUniverseConfig } from './state/universe.loader/universe.loader.actions';
+import { UniverseConfigQuery } from './state/universe.loader/universe.loader.query';
+import { IUniverseConfigurationService } from './services/iuniverse.configuration.service';
+import { filter } from 'rxjs/operator/filter';
+import { UniverseConfigurationService } from '@workspace-demo/app-universe/src/services/universe.configuration.service';
 
-export interface IConfigValue {
-    json: any
+export function appInit(store: Store<UniverseState>) {
+  return () => new Promise((resolve, reject) => {
+    store.dispatch(new InitiateUniverseLoader());
+    store.dispatch(new LoadUniverseConfig());
+    const sub = store.select(UniverseConfigQuery.universeReady)
+    .filter(isReady => isReady)
+    .subscribe(()=> {
+        sub.unsubscribe();
+        resolve(true);
+    });
+  });
 }
-
-export class ConfigValue implements IConfigValue {
-    json: any;
-}
-
-export function configLoaderFactory(configValue: ConfigValue): ConfigLoader {
-  const config = new ConfigStaticLoader(configValue.json);
-  return config;
-}
-export function configLoaderFactorySettings(_configService: ConfigService): UniverseConfig {
-  return <UniverseConfig>_configService.getSettings();
-}
-
 @NgModule({
   imports: [
     CommonModule,
@@ -36,34 +42,34 @@ export function configLoaderFactorySettings(_configService: ConfigService): Univ
     MatSidenavModule,
     MatMenuModule,
     MatButtonModule,
-    RouterModule.forChild([]),
-    ConfigModule.forRoot({
-      provide: ConfigLoader,
-      useFactory: configLoaderFactory,
-      deps: [ConfigValue]
-    })
+    StoreModule.forFeature('universe', UNIVERSE_REDUCERS),
+    EffectsModule.forFeature([UniverseLoaderEffects]),
+    RouterModule.forChild([])
   ],
   declarations: [HeaderComponent, UniverseComponent, TrackScrollDirective, NavigationComponent],
   exports: [UniverseComponent],
   providers: [
+    UniverseConfigurationService,
+    UniverseLoaderEffects,
     {
-      provide: UniverseConfig,
-      useFactory: configLoaderFactorySettings,
-      deps: [ConfigService]
+      provide: APP_INITIALIZER,
+      useFactory: appInit,
+      multi: true,
+      deps:[[new Inject(Store)]]
     }
   ],
   bootstrap: []
 })
 export class AppUniverseModule {
   
-  static fromConfig(config: IConfigValue): ModuleWithProviders {
+  static fromConfig(configService: IUniverseConfigurationService): ModuleWithProviders {
     return {
       ngModule: AppUniverseModule,
       providers: [
           {
-              provide: ConfigValue,
-              useValue: config
-          }
+            provide: 'UniverseConfigurationService',
+            useValue: configService
+        }
       ]
     };
   }

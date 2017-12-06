@@ -3,23 +3,26 @@ import { OnRunEffects, Actions, EffectNotification, Effect } from '@ngrx/effects
 import { Observable } from 'rxjs/Observable';
 import { UniverseLoaderActionTypes, SetUniverseConfigLoaded } from './universe.loader.actions';
 import { UniverseConfig } from './../../model/universe.config';
-import { ConfigValue } from './../../app-universe.module'
 import { IUniverseConfigurationService } from './../../services/iuniverse.configuration.service';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/exhaustMap';
+import 'rxjs/add/operator/takeUntil';
 
 @Injectable()
 export class UniverseLoaderEffects implements OnRunEffects {
     
     @Effect() getUniverseConfiguration = this.actions
-        .ofType(UniverseLoaderActionTypes.LoadUniverseConfig)
+        .ofType(UniverseLoaderActionTypes.LoadUniverseConfig+"")
         .switchMap(() =>  this.configService.getConfiguration())
         .map((universeConfig) => { 
             return new SetUniverseConfigLoaded(universeConfig);
     });
-
+    
     ngrxOnRunEffects(resolveEffects: Observable<EffectNotification>) {
-        return this.actions.ofType(UniverseLoaderActionTypes.InitiateUniverseLoader)
+        return this.actions.ofType(UniverseLoaderActionTypes.InitiateUniverseLoader + "")
             .exhaustMap(() => resolveEffects.takeUntil(
-                this.actions.ofType(UniverseLoaderActionTypes.FinishUniverseLoader)
+                this.actions.ofType(UniverseLoaderActionTypes.FinishUniverseLoader + "")
             ));
     }
 

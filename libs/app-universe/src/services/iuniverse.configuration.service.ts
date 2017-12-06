@@ -1,6 +1,6 @@
 import { Observable } from "rxjs/Observable";
-import { UniverseConfig } from "@workspace-demo/app-universe/dist/src/model/universe.config";
+import { UniverseConfig } from "@workspace-demo/app-universe/src/model/universe.config";
 
 export interface IUniverseConfigurationService {
-    getConfiguration(): Observable<UniverseConfig>;
+    getConfiguration(): Observable<any>;
 }

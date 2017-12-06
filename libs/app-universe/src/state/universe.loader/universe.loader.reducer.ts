@@ -3,7 +3,7 @@ import { UniverseLoaderActionTypes, UniverseLoaderActions } from './universe.loa
 export function universeConfigLoaderReducer(state: UniverseConfig = null,
             action: UniverseLoaderActions ): UniverseConfig {
     switch(action.type) {
-        case UniverseLoaderActionTypes.SetUniverseConfigLoaded: {
+        case UniverseLoaderActionTypes.SetUniverseConfigLoaded + "": {
             return { ... action.payload }
         }
         default: {

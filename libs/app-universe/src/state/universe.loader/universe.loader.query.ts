@@ -1,5 +1,7 @@
-export namespace UniverseConfigQuery {
-    export const getConfig = (state: any) => state.universe.configuration;
+import { UniverseConfig } from "./../../model/universe.config";
 
-    export const universeReady = (state: any) => getConfig(state) != null
+export namespace UniverseConfigQuery {
+    export const getConfig = (state) => <UniverseConfig>state.universe.configuration;
+
+    export const universeReady = (state) => getConfig(state) != null
 }

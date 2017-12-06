@@ -1,6 +1,6 @@
 import { AppState } from "apps/demo/src/app/state/app.state"; 
 import { ActionReducerMap } from '@ngrx/store'
-export function appReducer(state: AppState = {universe: null}, action: any){
+export function appReducer(state: AppState = null, action: any){
     switch(action.type){
         default: { return state; }
     }

@@ -16,10 +16,10 @@ npm pack
 
 rm -rf "C:/npm/universe/"
 mkdir  C:/npm/universe/
-cp angular-universe-0.0.4.tgz C:/npm/universe/angular-universe-0.0.4.tgz
+cp angular-universe-0.0.6.tgz C:/npm/universe/angular-universe-0.0.6.tgz
 
 cd  D:/Developer/Projects/GIT/mydemo/
 
 npm uninstall angular-universe --save
-npm install C:/npm/universe/angular-universe-0.0.4.tgz --save
+npm install C:/npm/universe/angular-universe-0.0.6.tgz --save
 npm run start

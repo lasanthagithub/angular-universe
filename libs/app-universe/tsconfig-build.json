@@ -3,6 +3,7 @@
     "compilerOptions": {
       "sourceMap": true,
       "declaration": true,
+      "allowSyntheticDefaultImports": true,
       "moduleResolution": "node",
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,

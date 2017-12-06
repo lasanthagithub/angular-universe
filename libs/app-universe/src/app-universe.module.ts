@@ -18,8 +18,7 @@ import { UniverseState } from './state/universe.state';
 import { InitiateUniverseLoader, LoadUniverseConfig } from './state/universe.loader/universe.loader.actions';
 import { UniverseConfigQuery } from './state/universe.loader/universe.loader.query';
 import { IUniverseConfigurationService } from './services/iuniverse.configuration.service';
-import { filter } from 'rxjs/operator/filter';
-import { UniverseConfigurationService } from '@workspace-demo/app-universe/src/services/universe.configuration.service';
+import 'rxjs/add/operator/filter';
 
 export function appInit(store: Store<UniverseState>) {
   return () => new Promise((resolve, reject) => {
@@ -49,7 +48,6 @@ export function appInit(store: Store<UniverseState>) {
   declarations: [HeaderComponent, UniverseComponent, TrackScrollDirective, NavigationComponent],
   exports: [UniverseComponent],
   providers: [
-    UniverseConfigurationService,
     UniverseLoaderEffects,
     {
       provide: APP_INITIALIZER,

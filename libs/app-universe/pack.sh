@@ -11,6 +11,9 @@ npm run package
 #cp package.json dist/package.json
 #cp package.json build/package.json
 
+
+
+
 cd dist 
 npm pack 
 

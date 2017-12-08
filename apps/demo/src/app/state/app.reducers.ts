@@ -7,5 +7,5 @@ export function appReducer(state: AppState = null, action: any){
 }
 
 export const ROOT_REDUCER: ActionReducerMap<AppState> = {
-    universe: appReducer
+    
 };

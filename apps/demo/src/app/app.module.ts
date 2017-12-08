@@ -13,7 +13,7 @@ import { DrillingComponent } from './components/drilling/drilling.component';
 import { FullComponent } from './components/full/full.component';
 import { DataProviderService } from './services/data-provider.service';
 import { StoreModule } from '@ngrx/store';
-import { ROOT_REDUCER } from './state/app.reducers';
+import { ROOT_REDUCER, appReducer } from './state/app.reducers';
 import { environment } from './../environments/environment.prod';
 import { EffectsModule } from '@ngrx/effects';
 import { IUniverseConfigurationService } from 'libs/app-universe/src/services/iuniverse.configuration.service';
@@ -25,8 +25,8 @@ import { UniverseConfig } from 'libs/app-universe/src/model/universe.config';
 
 const configService: IUniverseConfigurationService = {
     getConfiguration() : Observable<UniverseConfig> {
-      //const configJson: UniverseConfig = <UniverseConfig> require('./app-config/config.json');
-      const configJson: UniverseConfig = new UniverseConfig();
+      const configJson: UniverseConfig = <UniverseConfig> require('./app-config/config.json');
+      //const configJson: UniverseConfig = new UniverseConfig();
       return Observable.of(configJson).delay(3000);
     }
 }
@@ -58,7 +58,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     AppUniverseModule.fromConfig(configService),
-    StoreModule.forRoot(ROOT_REDUCER),
+    StoreModule.forRoot(appReducer),
     EffectsModule.forRoot([]),
     HttpClientModule,
     !environment.production? StoreDevtoolsModule.instrument() : [],

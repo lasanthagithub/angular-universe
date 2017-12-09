@@ -3,7 +3,9 @@
   "lib": {
     "entryFile": "index.ts",
     "externals": {
-      "@angular/material": "ng.material"
+      "@angular/material": "ng.material",
+      "@ngrx/store": "ngrx.store",
+      "@ngrx/effects": "ngrx.effects"
     }
   }
 }

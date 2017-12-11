@@ -22,11 +22,11 @@ import { Observable } from "rxjs/Observable";
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/delay';
 import { UniverseConfig } from 'libs/app-universe/src/model/universe.config';
-
+import { AppState } from 'apps/demo/src/app/state/app.state';
+import { AppEffectTest } from './state/app.effects';
 const configService: IUniverseConfigurationService = {
     getConfiguration() : Observable<UniverseConfig> {
       const configJson: UniverseConfig = <UniverseConfig> require('./app-config/config.json');
-      //const configJson: UniverseConfig = new UniverseConfig();
       return Observable.of(configJson).delay(3000);
     }
 }
@@ -57,11 +57,11 @@ const appRoutes: Routes = [
   imports: [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
-    AppUniverseModule.fromConfig(configService),
-    StoreModule.forRoot(appReducer),
-    EffectsModule.forRoot([]),
+    AppUniverseModule.provide<AppState>(configService, ROOT_REDUCER),
+    // StoreModule.forRoot(appReducer),
+    // EffectsModule.forRoot([]),
     HttpClientModule,
-    !environment.production? StoreDevtoolsModule.instrument() : [],
+    //!environment.production? StoreDevtoolsModule.instrument() : [],
     MatCardModule,
     FlexLayoutModule
   ],

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { AppState } from './state/app.state';
-import { TestAppStore, TestAppStoreWithPayload, TestAppStoreWithEffect } from './state/app.actions';
+import { TestAppStore, TestAppStoreWithPayload, TestAppStoreWithEffect, TestAppStoreWithOtherEffect } from './state/app.actions';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -22,6 +22,9 @@ export class AppComponent implements OnInit {
 
       const testActionWithEffect: TestAppStoreWithEffect  = new TestAppStoreWithEffect();
       store.dispatch(testActionWithEffect);
+
+      const testActionWithOtherEffect: TestAppStoreWithOtherEffect  = new TestAppStoreWithOtherEffect();
+      store.dispatch(testActionWithOtherEffect);
 
     }, 2000);
   }

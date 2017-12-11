@@ -9,11 +9,11 @@ import 'rxjs/add/operator/exhaustMap';
 import 'rxjs/add/operator/takeUntil';
 
 @Injectable()
-export class AppEffectTest {
+export class AppEffectOtherTest {
     
     @Effect() getAppEffectTest = this.actions
-        .ofType(AppActionTypes.TestAppStoreWithEffect+"")
-        .switchMap(() =>  Observable.of("Test Me From Effect").delay(2500))
+        .ofType(AppActionTypes.TestAppStoreWithOtherEffect+"")
+        .switchMap(() =>  Observable.of("Test Me From Other Effect").delay(4000))
         .map((val) => { 
             return new TestAppStoreWithEffectFinish(val);
     });

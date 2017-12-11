@@ -24,6 +24,8 @@ import 'rxjs/add/operator/delay';
 import { UniverseConfig } from 'libs/app-universe/src/model/universe.config';
 import { AppState } from 'apps/demo/src/app/state/app.state';
 import { AppEffectTest } from './state/app.effects';
+import { AppEffectOtherTest } from './state/app.other.effects';
+
 const configService: IUniverseConfigurationService = {
     getConfiguration() : Observable<UniverseConfig> {
       const configJson: UniverseConfig = <UniverseConfig> require('./app-config/config.json');
@@ -57,7 +59,7 @@ const appRoutes: Routes = [
   imports: [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
-    AppUniverseModule.provide<AppState>(configService, ROOT_REDUCER),
+    AppUniverseModule.provide<AppState>(configService, ROOT_REDUCER, [AppEffectTest, AppEffectOtherTest]),
     // StoreModule.forRoot(appReducer),
     // EffectsModule.forRoot([]),
     HttpClientModule,
@@ -66,7 +68,9 @@ const appRoutes: Routes = [
     FlexLayoutModule
   ],
   providers: [
-    DataProviderService
+    DataProviderService,
+    AppEffectTest,
+    AppEffectOtherTest
   ],
   declarations: [AppComponent, HomeComponent, DrillingComponent, FullComponent],
   bootstrap: [AppComponent]

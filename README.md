@@ -1,6 +1,6 @@
 # Angular Universe
 
-Angular Universe is an Angular based libarary. The Universe library opens up creating Angular websites with minimum efforts. It will be all based on configurations. Its pre-configured with NgRx and defines yout concepts of state management. By importing the libarary in your application and configuring the module, you will get a ready NgRx Angular application. The libarary state is all based on NgRx, but its optional for you to use that in your website or not. For examples of NgRx, please take a look at the demo app in this repo. The libarary is also using Materials as a concept. It will provide you with a pre-configured header and navigation sections. 
+Angular Universe is an Angular based libarary. The Universe library opens up creating Angular websites with minimum efforts. It will be all based on configurations. Its pre-configured with NgRx and defines you the concepts of state management. By importing the libarary in your application and configuring the module, you will get a ready NgRx Angular application. The libarary state is all based on NgRx, but its optional for you to use that in your website or not. For examples of NgRx, please take a look at the demo app in this repo. The libarary is also using Materials as a concept of design. It will provide you with a pre-configured header, navigation sections and more to come in the future. 
 
 ## Getting Started:
 

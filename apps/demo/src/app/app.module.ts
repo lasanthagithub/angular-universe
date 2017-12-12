@@ -55,13 +55,15 @@ const appRoutes: Routes = [
   }
 ];
 
+import { IUniverseConfigurationService } from 'libs/angular-universe/src/services/iuniverse.configuration.service';
+import { Observable } from "rxjs/Observable";
+import 'rxjs/add/operator/delay';
+import { UniverseConfig } from 'libs/angular-universe/src/model/universe.config';
 @NgModule({
   imports: [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     AppUniverseModule.provide<AppState>(configService, ROOT_REDUCER, [AppEffectTest, AppEffectOtherTest]),
-    // StoreModule.forRoot(appReducer),
-    // EffectsModule.forRoot([]),
     HttpClientModule,
     //!environment.production? StoreDevtoolsModule.instrument() : [],
     MatCardModule,

@@ -42,16 +42,12 @@ export function bootstrapEffects(effects: Type<any>[], sources: EffectSources, s
     return sources;
   };
 }
-export function createEffects(effects, store) {
-  console.log(effects);
-  //return [new effects[0]()];
-  return [effects];
-}
+
 export function createInstances(...instances: any[]) {
   return instances;
 }
 
-export function provideBootstrapEffects(effects: Type<any>[]) {
+export function provideBootstrapEffects(effects: Type<any>[]): any[] {
   return [
     effects,
     { provide: BOOTSTRAP_EFFECTS, deps: effects, useFactory: createInstances },
@@ -108,11 +104,6 @@ export function appInit(store: Store<UniverseState>) {
       useFactory: bootstrapEffects,
       deps: [[new Inject("App_Effects")], EffectSources]
     },
-    // {
-    //   provide: EFFECTS_TOKEN,
-    //   useFactory: getEffects,
-    //   deps: [[new Inject("App_Effects")]]
-    // },
     {
       provide: APP_INITIALIZER,
       useFactory: appInit,
@@ -124,7 +115,9 @@ export function appInit(store: Store<UniverseState>) {
 })
 export class AppUniverseModule {
   
-  static provide<T>(configService: IUniverseConfigurationService, reducers: ActionReducerMap<T> = null, effects: Type<any>[]): ModuleWithProviders {
+  static provide<T>(configService: IUniverseConfigurationService, 
+                      reducers: ActionReducerMap<T> = null,
+                      effects: Type<any>[] = []): ModuleWithProviders {
     return {
       ngModule: AppUniverseModule,
       providers: [
@@ -138,7 +131,7 @@ export class AppUniverseModule {
           },
           {
             provide: 'App_Effects', 
-            useFactory: createEffects,
+            useFactory: createInstances,
             deps: effects
           }
       ]

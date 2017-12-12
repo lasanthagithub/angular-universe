@@ -1,17 +1,23 @@
 # Angular Universe
 
-Angular Universe is an Angular based libarary. The Universe library opens up creating Angular application with minimum efforts. It will be all based on configurations. 
+Angular Universe is an Angular based libarary. The Universe library opens up creating Angular websites with minimum efforts. It will be all based on configurations. Its pre-configured with NgRx and defines yout concepts of state management. By importing the libarary in your application and configuring the module, you will get a ready NgRx Angular application. The libarary state is all based on NgRx, but its optional for you to use that in your website or not. For examples of NgRx, please take a look at the demo app in this repo. The libarary is also using Materials as a concept. It will provide you with a pre-configured header and navigation sections. 
 
 ## Getting Started:
 
-
+```
 npm install angular-universe --save
-
+```
 As we use Materials for our design you will also need to install materials and CDK 
-
+```
 npm install @angular/cdk --save
 npm install @angular/material --save
-
+```
+We also depend on NgRx, so run installation for the followwing 
+```
+npm install "@ngrx/store --save 
+npm install "@ngrx/effects --save 
+npm install "@ngrx/store-devtools --save 
+```
 Create a config.json file inside app-config/config.json
 
 config.json example can be found in the demo app in this git repo
@@ -28,17 +34,42 @@ You will get a project that is using materials so add your theme to .angular-cli
 
 Modify your app.module.ts file as follows: 
 ```
-import {  AppUniverseModule, IConfigValue  } from 'angular-universe';
-const jsonValue = require('./config.json');
-const config: IConfigValue = {
-    json: jsonValue
-};
+import { IUniverseConfigurationService } from 'libs/angular-universe/src/services/iuniverse.configuration.service';
+import { Observable } from "rxjs/Observable";
+import 'rxjs/add/operator/delay';
+import { UniverseConfig } from 'libs/angular-universe/src/model/universe.config';
+
+const configService: IUniverseConfigurationService = {
+    getConfiguration() : Observable<UniverseConfig> {
+      const configJson: UniverseConfig = <UniverseConfig> require('./app-config/config.json');
+      return Observable.of(configJson).delay(3000); // Delay your app initialization for 3 deconds.
+    }
+}
+
 @NgModule({
   imports: [
-    .......,
-    AppUniverseModule.fromConfig(config),
+    RouterModule.forRoot(appRoutes),
+    BrowserModule,
+    AppUniverseModule.provide<AppState>(configService),
+    ......
+  ],
+  providers: [
+  ],
+```
+
+The provide function accepsts few other optional parameters. You can pass reducers for NgRx state management and list of effects. 
+
+```
+@NgModule({
+  imports: [
     .......
-  ], ......
+    AppUniverseModule.provide<AppState>(configService, ROOT_REDUCER, [AppEffectTest, AppEffectOtherTest]), // Effects are optional.
+   .......
+  ],
+  providers: [
+    AppEffectTest,
+    AppEffectOtherTest
+  ],
 ```
 
 Note to be able to use `require` keyword above to load your json, you will need to edit tsconfig.app.json as follows:

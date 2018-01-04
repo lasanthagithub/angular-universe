@@ -6,7 +6,6 @@ import { AppUniverseModule } from 'libs/angular-universe';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { DrillingComponent } from './components/drilling/drilling.component';
@@ -25,6 +24,7 @@ import { UniverseConfig } from 'libs/angular-universe/src/model/universe.config'
 import { AppState } from 'apps/demo/src/app/state/app.state';
 import { AppEffectTest } from './state/app.effects';
 import { AppEffectOtherTest } from './state/app.other.effects';
+import 'rxjs/add/operator/delay';
 
 const configService: IUniverseConfigurationService = {
     getConfiguration() : Observable<UniverseConfig> {
@@ -55,10 +55,6 @@ const appRoutes: Routes = [
   }
 ];
 
-import { IUniverseConfigurationService } from 'libs/angular-universe/src/services/iuniverse.configuration.service';
-import { Observable } from "rxjs/Observable";
-import 'rxjs/add/operator/delay';
-import { UniverseConfig } from 'libs/angular-universe/src/model/universe.config';
 @NgModule({
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -66,8 +62,7 @@ import { UniverseConfig } from 'libs/angular-universe/src/model/universe.config'
     AppUniverseModule.provide<AppState>(configService, ROOT_REDUCER, [AppEffectTest, AppEffectOtherTest]),
     HttpClientModule,
     //!environment.production? StoreDevtoolsModule.instrument() : [],
-    MatCardModule,
-    FlexLayoutModule
+    MatCardModule
   ],
   providers: [
     DataProviderService,
